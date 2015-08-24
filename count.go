@@ -9,18 +9,18 @@ type counter struct {
 	s string
 }
 
-func piece(s string) []string {
+func split(s string) []string {
 	p := []string{}
-	var r rune
+	var previous rune
 	for i, v := range s {
 		if i == 0 {
-			r = v
+			previous = v
 			continue
 		}
-		if v != r {
+		if v != previous {
 			p = append(p, s[:i])
 			s = s[i:]
-			p = append(p, piece(s)...)
+			p = append(p, split(s)...)
 			break
 		}
 
@@ -31,14 +31,18 @@ func piece(s string) []string {
 	return p
 }
 
+func lastIndex(s string) string {
+	return string(s[0]) + strconv.Itoa(len(s)-1)
+}
+
 func echo(p []string) string {
 	s := ""
 	for _, v := range p {
-		s += string(v[0]) + strconv.Itoa(len(v)-1)
+		s += lastIndex(v)
 	}
 	return s
 }
 
 func main() {
-	fmt.Println(echo(piece("aaaabbbccaddeeeeedfedffffff")))
+	fmt.Println(echo(split("aaaabbbccaddeeeeedfedffffff")))
 }
