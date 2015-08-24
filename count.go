@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"strconv"
+)
+
 type counter struct {
 	s string
 }
@@ -26,6 +31,14 @@ func piece(s string) []string {
 	return p
 }
 
-func LastIChar(s string) counter {
-	return counter{s: s}
+func echo(p []string) string {
+	s := ""
+	for _, v := range p {
+		s += string(v[0]) + strconv.Itoa(len(v)-1)
+	}
+	return s
+}
+
+func main() {
+	fmt.Println(echo(piece("aaaabbbccadd")))
 }
