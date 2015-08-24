@@ -40,5 +40,5 @@ func echo(p []string) string {
 }
 
 func main() {
-	fmt.Println(echo(piece("aaaabbbccadd")))
+	fmt.Println(echo(piece("aaaabbbccaddeeeeedfedffffff")))
 }
